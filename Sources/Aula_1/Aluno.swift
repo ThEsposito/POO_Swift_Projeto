@@ -1,6 +1,5 @@
 import Foundation
 class Aluno: Pessoa {
-
     private var matricula: String
     private var nivel: NivelAluno
     private(set) var plano: Plano
@@ -13,7 +12,6 @@ class Aluno: Pessoa {
     }
 
     override func getDescricao () -> String{
-
         return "(\(super.getDescricao()) \nMatricula: \(matricula)\nPlano: \(plano.nome))"
     }
 
