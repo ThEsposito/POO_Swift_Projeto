@@ -15,4 +15,7 @@ class Aluno: Pessoa {
         return "(\(super.getDescricao()) \nMatricula: \(matricula)\nPlano: \(plano.nome))"
     }
 
+    func getMatricula() -> String {
+        return self.matricula
+    }
 }
