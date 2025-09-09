@@ -1,6 +1,6 @@
 import Foundation
 class Aluno: Pessoa {
-    private var matricula: String
+    private let matricula: String
     private var nivel: NivelAluno
     private(set) var plano: Plano
 

@@ -1,5 +1,5 @@
 class Plano {
-    public var nome: String
+    internal let nome: String
     init(nome: String){
         self.nome = nome
     }
