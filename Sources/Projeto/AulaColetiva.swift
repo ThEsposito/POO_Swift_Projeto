@@ -9,4 +9,8 @@ class AulaColetiva: Aula {
         }
         return false
     }
+
+    override func getDescricao() -> String {
+        return "\(super.getDescricao()) \nNúmero de vagas ocupadas: \(alunosInscritos.count) | Máximo: \(capacidadeMaxima)"
+    }
 }
