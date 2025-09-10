@@ -1,6 +1,8 @@
 class Pessoa {
-    private let nome: String
-    private var email: String
+    // Colocamos como public porque nome é uma constante.
+    // Não é possível atribuir um let como private(set)
+    public let nome: String
+    private(set) var email: String
 
     init(nome: String, email: String){
         self.nome = nome
