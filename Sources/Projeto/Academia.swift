@@ -61,7 +61,7 @@ class Academia {
 
         print("--- Lista de Alunos Matriculados ---")
         // Dá certo isso daqui??
-        for aluno in alunosMatriculados.values.sorted { (a1: Aluno, a2: Aluno) -> Bool in a1.nome > a2.nome} {
+        for aluno in alunosMatriculados.values.sorted(by: { (a1: Aluno, a2: Aluno) -> Bool in a1.nome > a2.nome }) {
             print(aluno.getDescricao())
         }
         print("------------------------------------")

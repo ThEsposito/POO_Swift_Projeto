@@ -1,5 +1,4 @@
-import Projeto
-
+let inst = Instrutor(nome: "TheoPai", email: "hteozinhgames@gmail.com", especialidade: "Minecraft")
 let aulaColetiva = AulaColetiva(nome: "Como zerar em 5 minutor", instrutor: inst)
 
 let aluno: Aluno = Aluno(nome: "Pedro", email:"pedro@gmail.com", matricula: "6 meses", plano: PlanoAnual())
@@ -8,7 +7,7 @@ print(aulaColetiva.inscrever(aluno: aluno))
 
 let a1 = Aluno(nome: "Theo", email: "theo.theo@theo.com", matricula: "1234", plano: PlanoAnual())
 // Mesma matrícula
-let a2 = Aluno(nome: "Theo2", email: "theo.theo@theo.com2", matricula: "1234", plano: PlanoMensal())
+let a2 = Aluno(nome: "Theo2", email: "theo.theo@theo.com2", matricula: "12345", plano: PlanoMensal())
 
 
 var alunosMatriculados: [String : Aluno] = [:]
@@ -16,11 +15,13 @@ alunosMatriculados[aluno.getMatricula()] = aluno
 alunosMatriculados[a1.getMatricula()] = a1
 alunosMatriculados[a2.getMatricula()] = a2
 
-let inst = Instrutor(nome: "TheoPai", email: "hteozinhgames@gmail.com", especialidade: "Minecraft")
 var instrutoresContratados: [String: Instrutor] = [:]
 instrutoresContratados[inst.email] = inst
 
 var aulasDisponiveis = [aulaColetiva]
-var legPress = Aparelho(nomeItem: "leg press")
+var aparelhos = [Aparelho(nomeItem: "leg press"), Aparelho(nomeItem: "Supinão")]
 
-var academia = Academia(nome: "acad de bairro raiz", alunosMatriculados: alunosMatriculados, instrutoresContratados: instrutoresContratados, aparelhos: [Aparelho], aulasDisponiveis: aulasDisponiveis)
+var academia = Academia(nome: "acad de bairro raiz", alunosMatriculados: alunosMatriculados, instrutoresContratados: instrutoresContratados, aparelhos: aparelhos, aulasDisponiveis: aulasDisponiveis)
+
+academia.listarAlunos()
+academia.listarAulas()
