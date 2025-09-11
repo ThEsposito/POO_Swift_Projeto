@@ -1,9 +1,9 @@
 class Academia {
     private let nome: String
-    private var alunosMatriculados: [String: Aluno]
-    private var instrutoresContratados: [String: Instrutor]
+    internal var alunosMatriculados: [String: Aluno]
+    internal var instrutoresContratados: [String: Instrutor]
     private var aparelhos:[Aparelho]
-    private var aulasDisponiveis: [Aula]
+    internal var aulasDisponiveis: [Aula]
 
     // Faço overloading pra iniciar tudo como vazio?
     init(nome: String, alunosMatriculados: [String: Aluno], instrutoresContratados: [String: Instrutor],
@@ -15,13 +15,13 @@ class Academia {
         self.aulasDisponiveis = aulasDisponiveis
     }
 
-    public func adicionarAparelho(_ aula: Aula){
-        aulasDisponiveis.append(aula)
+    public func adicionarAparelho(_ aparelho: Aparelho){
+        aparelhos.append(aparelho)
     }
 
     public func contratarInstrutor(_ instrutor: Instrutor){
         let email = instrutor.email
-        if(instrutoresContratados[email] != nil){
+        if(instrutoresContratados[email] == nil){
             instrutoresContratados[instrutor.email] = instrutor
             print("Instrutor contratado com sucesso")
         } else {
@@ -29,10 +29,14 @@ class Academia {
         }
     }
 
+    public func adicionarAula(_ aula: Aula){
+        aulasDisponiveis.append(aula)
+    }
+
     // Poderia retornar um bool, indicando se foi adicionado ou não
     public func matricularAluno(_ aluno: Aluno){
         let matricula = aluno.getMatricula()
-        if(alunosMatriculados[matricula] != nil){
+        if(alunosMatriculados[matricula] == nil){
             alunosMatriculados[matricula] = aluno
             print("Aluno adicionado com sucesso!")
         } else {
@@ -59,21 +63,18 @@ class Academia {
             return
         }
 
-        print("--- Lista de Alunos Matriculados ---")
-        // Dá certo isso daqui??
+        print("----- Lista de Alunos Matriculados -----")
         for aluno in alunosMatriculados.values.sorted(by: { (a1: Aluno, a2: Aluno) -> Bool in a1.nome > a2.nome }) {
             print(aluno.getDescricao())
         }
-        print("------------------------------------")
+        print("---------------------------------------\n")
     }
 
     public func listarAulas(){
-        print("--- Lista de Aulas Disponíveis ---")
-        
+        print("----- Lista de Aulas Disponíveis ------")
         for aula in aulasDisponiveis {
-            print("\n\n\(aula.getDescricao())")
+            print("\(aula.getDescricao())\n")
         }
-
-        print("-------------------------------------")
+        print("---------------------------------------\n")
     }
 }

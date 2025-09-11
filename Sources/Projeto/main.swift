@@ -1,27 +1,51 @@
-let inst = Instrutor(nome: "TheoPai", email: "hteozinhgames@gmail.com", especialidade: "Minecraft")
-let aulaColetiva = AulaColetiva(nome: "Como zerar em 5 minutor", instrutor: inst)
+let academia = Academia(nome: "Academia POO 360", alunosMatriculados: [ : ], instrutoresContratados: [ : ], aparelhos: [], aulasDisponiveis: [])
 
-let aluno: Aluno = Aluno(nome: "Pedro", email:"pedro@gmail.com", matricula: "6 meses", plano: PlanoAnual())
-print(aulaColetiva.inscrever(aluno: aluno))
-print(aulaColetiva.inscrever(aluno: aluno))
+let planoMensal = PlanoMensal() 
+let planoAnual = PlanoAnual()
 
-let a1 = Aluno(nome: "Theo", email: "theo.theo@theo.com", matricula: "1234", plano: PlanoAnual())
-// Mesma matrícula
-let a2 = Aluno(nome: "Theo2", email: "theo.theo@theo.com2", matricula: "12345", plano: PlanoMensal())
+let inst1 = Instrutor(nome: "Theo Personal Trainer", email: "personal.theozao@gmail.com", especialidade: "Musculação")
+let inst2 = Instrutor(nome: "Felipe Personal Trainer", email: "personal.felipe@gmail.com", especialidade: "Fisioterapia")
 
+academia.contratarInstrutor(inst1)
+academia.contratarInstrutor(inst2)
+print()
 
-var alunosMatriculados: [String : Aluno] = [:]
-alunosMatriculados[aluno.getMatricula()] = aluno
-alunosMatriculados[a1.getMatricula()] = a1
-alunosMatriculados[a2.getMatricula()] = a2
+let aluno1 = academia.matricularAluno(nome: "Theo Magrelo", email: "theo.magrelo@cliente.com", matricula: "1234", plano: planoMensal)
+let aluno2 = academia.matricularAluno(nome: "Theo Maromba", email: "theo.maromba@cliente.com", matricula: "1235", plano: planoAnual)
+print()
 
-var instrutoresContratados: [String: Instrutor] = [:]
-instrutoresContratados[inst.email] = inst
+let aulaPersonal = AulaPersonal(nome: "Treino monstro para hipertrofia", instrutor: inst1, aluno: aluno1)
+let aulaColetiva = AulaColetiva(nome: "Zumba", instrutor: inst2, capacidadeMaxima: 3)
 
-var aulasDisponiveis = [aulaColetiva]
-var aparelhos = [Aparelho(nomeItem: "leg press"), Aparelho(nomeItem: "Supinão")]
+academia.adicionarAula(aulaPersonal)
+academia.adicionarAula(aulaColetiva)
 
-var academia = Academia(nome: "acad de bairro raiz", alunosMatriculados: alunosMatriculados, instrutoresContratados: instrutoresContratados, aparelhos: aparelhos, aulasDisponiveis: aulasDisponiveis)
+print("Adicionando paradas à aula coletiva")
+aulaColetiva.inscrever(aluno: aluno1)
+aulaColetiva.inscrever(aluno: aluno2)
+
+let aluno3 = Aluno(nome: "Theo Gordao", email: "theo.gordao@gmail.com", matricula: "1236", plano: planoAnual)
+
+aulaColetiva.inscrever(aluno: aluno3)
+
+let aluno4 = Aluno(nome: "NomeDoAluno4", email: "aluno4@cliente.com.br", matricula: "1237", plano: planoMensal)
+aulaColetiva.inscrever(aluno: aluno4)
+print()
 
 academia.listarAlunos()
+print()
 academia.listarAulas()
+print("\n")
+var aulas: [Aula] = [aulaPersonal, aulaColetiva]
+for aula in aulas {
+    print(aula.getDescricao(),"\n")
+}
+
+var pessoas: [Pessoa] = [aluno1, aluno2, inst1, inst2]
+for pessoa in pessoas {
+    print(pessoa.getDescricao(),"\n")
+}
+print("--------------Relatório--------------")
+let relatorio = Academia.gerarRelatorio(academia)
+print("Total de alunos: \(relatorio().0)\nTotal de instrutores: \(relatorio().1)\nTotal de aulas: \(relatorio().2)")
+print("-------------------------------------")
