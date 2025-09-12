@@ -63,8 +63,9 @@ class Academia {
             return
         }
 
-        print("----- Lista de Alunos Matriculados -----")
-        for aluno in alunosMatriculados.values.sorted(by: { (a1: Aluno, a2: Aluno) -> Bool in a1.nome > a2.nome }) {
+        let alunosOrdenado = alunosMatriculados.values.sorted(by: { (a1: Aluno, a2: Aluno) -> Bool in a1.nome < a2.nome })
+        print("----- Lista de Alunos MatriculadosOrdenado -----")
+        for aluno in  alunosOrdenado {
             print(aluno.getDescricao())
         }
         print("---------------------------------------\n")

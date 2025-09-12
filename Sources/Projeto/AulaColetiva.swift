@@ -2,6 +2,7 @@ class AulaColetiva: Aula {
     private(set) var alunosInscritos: [String: Aluno] = [:]
     private var capacidadeMaxima: Int
 
+    // Em caso de uma entrada inválida, define a capacidade máxima como o padrão
     init(nome: String, instrutor: Instrutor, capacidadeMaxima: Int){
         if(capacidadeMaxima > 0){
             self.capacidadeMaxima = capacidadeMaxima
@@ -11,8 +12,8 @@ class AulaColetiva: Aula {
         super.init(nome: nome, instrutor: instrutor)
     }
     
-    // Esse construtor mantém a capacidade máxima como o valor padrão. Precisei usar override porque tem a mesma quantidade
-    // de parâmetros que o construtor da classe pai
+    // Esse construtor mantém a capacidade máxima como o valor padrão. 
+    // Precisei usar override porque tem a mesma quantidade de parâmetros que o construtor da classe pai
     override init(nome: String, instrutor: Instrutor){
         self.capacidadeMaxima = 25 // Valor padrão
         super.init(nome: nome, instrutor: instrutor)

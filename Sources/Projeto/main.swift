@@ -10,8 +10,8 @@ academia.contratarInstrutor(inst1)
 academia.contratarInstrutor(inst2)
 print()
 
-let aluno1 = academia.matricularAluno(nome: "Theo Magrelo", email: "theo.magrelo@cliente.com", matricula: "1234", plano: planoMensal)
-let aluno2 = academia.matricularAluno(nome: "Theo Maromba", email: "theo.maromba@cliente.com", matricula: "1235", plano: planoAnual)
+let aluno1 = academia.matricularAluno(nome: "GTheo Magrelo", email: "theo.magrelo@cliente.com", matricula: "1234", plano: planoMensal)
+let aluno2 = academia.matricularAluno(nome: "NTheo Maromba", email: "theo.maromba@cliente.com", matricula: "1235", plano: planoAnual)
 print()
 
 let aulaPersonal = AulaPersonal(nome: "Treino monstro para hipertrofia", instrutor: inst1, aluno: aluno1)
@@ -21,15 +21,32 @@ academia.adicionarAula(aulaPersonal)
 academia.adicionarAula(aulaColetiva)
 
 print("Adicionando paradas à aula coletiva")
-aulaColetiva.inscrever(aluno: aluno1)
-aulaColetiva.inscrever(aluno: aluno2)
+if(aulaColetiva.inscrever(aluno: aluno1)){
+    print("Aluno \(aluno1.nome) inscrito com sucesso em \(aulaColetiva.nome)")
+} else {
+    print("ERRO: aluno \(aluno1.nome) não foi inscrito!")
+}
 
-let aluno3 = Aluno(nome: "Theo Gordao", email: "theo.gordao@gmail.com", matricula: "1236", plano: planoAnual)
+if(aulaColetiva.inscrever(aluno: aluno2)){
+    print("Aluno \(aluno2.nome) inscrito com sucesso em \(aulaColetiva.nome)")
+} else {
+    print("ERRO: aluno \(aluno2.nome) não foi inscrito!")
+}
 
-aulaColetiva.inscrever(aluno: aluno3)
+let aluno3 = Aluno(nome: "LTheo Gordao", email: "theo.gordao@gmail.com", matricula: "1236", plano: planoAnual)
 
-let aluno4 = Aluno(nome: "NomeDoAluno4", email: "aluno4@cliente.com.br", matricula: "1237", plano: planoMensal)
-aulaColetiva.inscrever(aluno: aluno4)
+if(aulaColetiva.inscrever(aluno: aluno3)){
+    print("Aluno \(aluno3.nome) inscrito com sucesso em \(aulaColetiva.nome)")    
+} else {
+    print("ERRO: aluno \(aluno3.nome) não foi inscrito!")
+}
+
+let aluno4 = Aluno(nome: "LNomeDoAluno4", email: "aluno4@cliente.com.br", matricula: "1237", plano: planoMensal)
+if(aulaColetiva: aluno4)){
+    print("Aluno \(aluno4.nome) inscrito com sucesso em \(aulaColetiva.nome)")
+} else {
+    print("ERRO: aluno \(aluno4.nome) não foi inscrito!")
+}
 print()
 
 academia.listarAlunos()
