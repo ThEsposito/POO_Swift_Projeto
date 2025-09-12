@@ -42,7 +42,7 @@ if(aulaColetiva.inscrever(aluno: aluno3)){
 }
 
 let aluno4 = Aluno(nome: "LNomeDoAluno4", email: "aluno4@cliente.com.br", matricula: "1237", plano: planoMensal)
-if(aulaColetiva: aluno4)){
+if(aulaColetiva.inscrever(aluno: aluno4)){
     print("Aluno \(aluno4.nome) inscrito com sucesso em \(aulaColetiva.nome)")
 } else {
     print("ERRO: aluno \(aluno4.nome) não foi inscrito!")
