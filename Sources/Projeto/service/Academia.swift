@@ -19,13 +19,13 @@ class Academia {
         aparelhos.append(aparelho)
     }
 
-    public func contratarInstrutor(_ instrutor: Instrutor){
+    public func contratarInstrutor(_ instrutor: Instrutor) throws {
         let email = instrutor.email
+
         if(instrutoresContratados[email] == nil){
             instrutoresContratados[instrutor.email] = instrutor
-            print("Instrutor contratado com sucesso")
         } else {
-            print("Instrutor já contratado")
+            throw AcademiaError.instrutorJaCadastrado(instrutor: instrutor)
         }
     }
 
@@ -33,21 +33,20 @@ class Academia {
         aulasDisponiveis.append(aula)
     }
 
-    // Poderia retornar um bool, indicando se foi adicionado ou não
-    public func matricularAluno(_ aluno: Aluno){
+    public func matricularAluno(_ aluno: Aluno) throws {
         let matricula = aluno.getMatricula()
         if(alunosMatriculados[matricula] == nil){
             alunosMatriculados[matricula] = aluno
-            print("Aluno adicionado com sucesso!")
         } else {
-            // Poderíamos lançar uma exceção aqui!
-            print("Erro: Aluno com matrícula \(matricula) já existe.")
+            throw AcademiaError.alunoJaMatriculado(aluno: aluno)
         }
     }
 
-    public func matricularAluno(nome: String, email: String, matricula: String, plano: Plano) -> Aluno {
+    // Acho que pode retornar um Optional!!!! Ficar esperto!!
+    public func matricularAluno(nome: String, email: String, matricula: String, plano: Plano) throws -> Aluno {
         let novoAluno = Aluno(nome: nome, email: email, matricula: matricula, plano: plano)
-        matricularAluno(novoAluno)
+        // Conferir se esse try repassa o erro
+        try matricularAluno(novoAluno)
         return novoAluno
     }
 
@@ -60,7 +59,6 @@ class Academia {
     public func listarAlunos() {
         if(alunosMatriculados.count == 0){
             print("Nenhum aluno matriculado.")
-            return
         }
 
         print("----- Lista de Alunos Matriculados -----")

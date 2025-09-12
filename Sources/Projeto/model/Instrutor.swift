@@ -1,3 +1,5 @@
+// TODO: Instrutor parece não ter um identificador próprio inutável. Devemos usar o email?
+
 class Instrutor: Pessoa {
     private var especialidade: String
 

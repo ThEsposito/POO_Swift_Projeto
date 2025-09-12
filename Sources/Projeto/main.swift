@@ -6,12 +6,33 @@ let planoAnual = PlanoAnual()
 let inst1 = Instrutor(nome: "Theo Personal Trainer", email: "personal.theozao@gmail.com", especialidade: "Musculação")
 let inst2 = Instrutor(nome: "Felipe Personal Trainer", email: "personal.felipe@gmail.com", especialidade: "Fisioterapia")
 
-academia.contratarInstrutor(inst1)
-academia.contratarInstrutor(inst2)
+do{
+    try academia.contratarInstrutor(inst1)
+    try academia.contratarInstrutor(inst2)
+} catch (AcademiaError.instrutorJaCadastrado(let instrutorJaCadastrado)){
+    print("O instrutor \(instrutorJaCadastrado) já havia sido cadastrado!!")
+}
+
 print()
 
-let aluno1 = academia.matricularAluno(nome: "Theo Magrelo", email: "theo.magrelo@cliente.com", matricula: "1234", plano: planoMensal)
-let aluno2 = academia.matricularAluno(nome: "Theo Maromba", email: "theo.maromba@cliente.com", matricula: "1235", plano: planoAnual)
+var aluno1:Aluno
+var aluno2:Aluno
+
+do {
+    aluno1 = try| academia.matricularAluno(nome: "Theo Magrelo", email: "theo.magrelo@cliente.com", matricula: "1234", plano: planoMensal)
+} catch(AcademiaError.alunoJaMatriculado(let alunoRejeitado)){
+    print("O aluno \(alunoRejeitado.nome) já havia sido inscrito!!")
+    aluno1 = alunoRejeitado
+} 
+
+
+do{
+    aluno2 = try academia.matricularAluno(nome: "Theo Maromba", email: "theo.maromba@cliente.com", matricula: "1235", plano: planoAnual)
+} catch(AcademiaError.alunoJaMatriculado(let alunoRejeitado)){
+    print("O aluno \(alunoRejeitado.nome) já havia sido inscrito!!")
+    aluno2 = alunoRejeitado
+} 
+
 print()
 
 let aulaPersonal = AulaPersonal(nome: "Treino monstro para hipertrofia", instrutor: inst1, aluno: aluno1)
@@ -21,15 +42,33 @@ academia.adicionarAula(aulaPersonal)
 academia.adicionarAula(aulaColetiva)
 
 print("Adicionando paradas à aula coletiva")
-aulaColetiva.inscrever(aluno: aluno1)
-aulaColetiva.inscrever(aluno: aluno2)
+
+do {
+    try aulaColetiva.inscrever(aluno: aluno1)
+} catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
+    print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+}
+
+do{
+    try aulaColetiva.inscrever(aluno: aluno2)
+} catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
+    print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+}
 
 let aluno3 = Aluno(nome: "Theo Gordao", email: "theo.gordao@gmail.com", matricula: "1236", plano: planoAnual)
-
-aulaColetiva.inscrever(aluno: aluno3)
+do{
+    try aulaColetiva.inscrever(aluno: aluno3)
+} catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
+    print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+}
 
 let aluno4 = Aluno(nome: "NomeDoAluno4", email: "aluno4@cliente.com.br", matricula: "1237", plano: planoMensal)
-aulaColetiva.inscrever(aluno: aluno4)
+
+do {
+    try aulaColetiva.inscrever(aluno: aluno4)
+} catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
+    print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+}
 print()
 
 academia.listarAlunos()
