@@ -19,7 +19,7 @@ var aluno1:Aluno
 var aluno2:Aluno
 
 do {
-    aluno1 = try| academia.matricularAluno(nome: "Theo Magrelo", email: "theo.magrelo@cliente.com", matricula: "1234", plano: planoMensal)
+    aluno1 = try academia.matricularAluno(nome: "Theo Magrelo", email: "theo.magrelo@cliente.com", matricula: "1234", plano: planoMensal)
 } catch(AcademiaError.alunoJaMatriculado(let alunoRejeitado)){
     print("O aluno \(alunoRejeitado.nome) já havia sido inscrito!!")
     aluno1 = alunoRejeitado
