@@ -41,8 +41,6 @@ let aulaColetiva = AulaColetiva(nome: "Zumba", instrutor: inst2, capacidadeMaxim
 academia.adicionarAula(aulaPersonal)
 academia.adicionarAula(aulaColetiva)
 
-print("Adicionando paradas à aula coletiva")
-
 do {
     try aulaColetiva.inscrever(aluno: aluno1)
 } catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){

@@ -1,7 +1,8 @@
 class Pessoa {
     // Colocamos como public porque nome é uma constante.
     // Não é possível atribuir um let como private(set) para futuras leituras
-    public let nome: String
+    // Deveríamos colocar nome como let? E se a pessoa mudar o nome no cartório?
+    private(set) var nome: String
     private(set) var email: String
 
     init(nome: String, email: String){
