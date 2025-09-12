@@ -20,7 +20,7 @@ class AulaColetiva: Aula {
 
     func inscrever(aluno: Aluno) throws {
         if(alunosInscritos.count >= capacidadeMaxima) {
-            throw AulaError.capacidadeMaximaAtingida
+            throw AulaError.capacidadeMaximaAtingida(aluno: aluno, aula: self)
         } else if(alunosInscritos[aluno.getMatricula()] !=  nil){
             print("ERRO: aluno \(aluno.nome) não foi inscrito!")
             throw AulaError.alunoJaInscrito(aluno: aluno, aula: self)

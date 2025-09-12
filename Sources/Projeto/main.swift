@@ -47,12 +47,16 @@ do {
     try aulaColetiva.inscrever(aluno: aluno1)
 } catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
     print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+} catch(AulaError.capacidadeMaximaAtingida(let alunoRejeitado, let aulaLotada)){
+    print("Capacidade máxima atingida! Não foi possível cadastrar \(alunoRejeitado.nome) em \(aulaLotada.nome)")
 }
 
 do{
     try aulaColetiva.inscrever(aluno: aluno2)
 } catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
     print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+} catch(AulaError.capacidadeMaximaAtingida(let alunoRejeitado, let aulaLotada)){
+    print("Capacidade máxima atingida! Não foi possível cadastrar \(alunoRejeitado.nome) em \(aulaLotada.nome)")
 }
 
 let aluno3 = Aluno(nome: "Theo Gordao", email: "theo.gordao@gmail.com", matricula: "1236", plano: planoAnual)
@@ -60,6 +64,8 @@ do{
     try aulaColetiva.inscrever(aluno: aluno3)
 } catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
     print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+} catch(AulaError.capacidadeMaximaAtingida(let alunoRejeitado, let aulaLotada)){
+    print("Capacidade máxima atingida! Não foi possível cadastrar \(alunoRejeitado.nome) em \(aulaLotada.nome)")
 }
 
 let aluno4 = Aluno(nome: "NomeDoAluno4", email: "aluno4@cliente.com.br", matricula: "1237", plano: planoMensal)
@@ -68,6 +74,8 @@ do {
     try aulaColetiva.inscrever(aluno: aluno4)
 } catch(AulaError.alunoJaInscrito(let alunoRejeitado, let aula)){
     print("Aluno \(alunoRejeitado.nome) já havia sido inscrito na aula \(aula.nome)")
+} catch(AulaError.capacidadeMaximaAtingida(let alunoRejeitado, let aulaLotada)){
+    print("Capacidade máxima atingida! Não foi possível cadastrar \(alunoRejeitado.nome) em \(aulaLotada.nome)")
 }
 print()
 
